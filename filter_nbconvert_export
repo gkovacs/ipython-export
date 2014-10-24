@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 
 from __future__ import print_function
+import string
+
+def isprintable(x):
+  return x in string.printable
+
+def toprintable(x):
+  return filter(isprintable, x)
 
 import sys
 
@@ -8,6 +15,8 @@ atStart = True
 inInput = True
 postBlock = False
 for line in sys.stdin:
+  if len(line) > 0 and not isprintable(line[0]):
+    continue
   if line.startswith('# In['):
     inInput = True
     postBlock = True

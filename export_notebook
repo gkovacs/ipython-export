@@ -5,6 +5,14 @@ from subprocess import check_output
 import hashlib
 from os import path
 
+import string
+
+def isprintable(x):
+  return x in string.printable
+
+def toprintable(x):
+  return filter(isprintable, x)
+
 def hashfile(afile, hasher, blocksize=65536):
   buf = afile.read(blocksize)
   while len(buf) > 0:
