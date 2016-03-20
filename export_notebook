@@ -30,7 +30,6 @@ if path.exists(output_file):
     #print 'no need to export'
     sys.exit()
 
-pyfile = check_output('jupyter nbconvert --to python ' + sys.argv[1] + ' --stdout | 
-filter_nbconvert_export', shell=True)
+pyfile = check_output('jupyter nbconvert --to python ' + sys.argv[1] + ' --stdout | filter_nbconvert_export', shell=True)
 pyfile = '#!/usr/bin/env python\n# md5: ' + input_hash + '\n' + pyfile
 open(output_file, 'w').write(pyfile)
