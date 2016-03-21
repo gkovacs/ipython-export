@@ -30,6 +30,12 @@ if path.exists(output_file):
     #print 'no need to export'
     sys.exit()
 
-pyfile = check_output('jupyter nbconvert --to python ' + sys.argv[1] + ' --stdout | filter_nbconvert_export', shell=True)
+filter_nbconvert_export_candidates = ['C:/Users/geza/.babun/cygwin/usr/local/bin/filter_nbconvert_export', '/usr/local/bin/filter_nbconvert_export']
+filter_nbconvert_export = 'filter_nbconvert_export'
+for x in filter_nbconvert_export_candidates:
+  if path.exists(x):
+    filter_nbconvert_export = 'python ' + x
+    break
+pyfile = check_output('jupyter nbconvert --to python ' + sys.argv[1] + ' --stdout | ' + filter_nbconvert_export, shell=True)
 pyfile = '#!/usr/bin/env python\n# md5: ' + input_hash + '\n' + pyfile
 open(output_file, 'w').write(pyfile)
