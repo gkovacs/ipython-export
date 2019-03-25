@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export_notebook "$1"
+mypy `echo "$1" | sed s/\.ipynb$/\.py/` --ignore-missing-imports --python-executable python3.7
