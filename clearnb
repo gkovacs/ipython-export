@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+
+from sys import argv
+from subprocess import call
+
+call('jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace ' + argv[1], shell=True)
